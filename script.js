@@ -23,7 +23,7 @@ function getComputerChoice() {
 function playRound(playerSelection, computerSelection) {
     // format player's selection
     playerSelection = playerSelection.toLowerCase();
-    
+
     // based on the players selection we have 3 paths
     if (playerSelection === "rock")
     {
@@ -82,8 +82,15 @@ function playRound(playerSelection, computerSelection) {
     }
 };
 
-let p1 = "scissors";
-let com = getComputerChoice();
+function game() {
+    // create a loop that plays 5 rounds
+    for (let index = 0; index < 5; index++) {
+        // have user select an option
+        let playerSelection = prompt("Rock Paper or Scissors?");
+        let computerSelection = getComputerChoice();
 
-console.log(com);
-console.log(playRound(p1, com));
+        console.log("Round " + (index + 1) + ": " + playRound(playerSelection, computerSelection));
+    }
+};
+
+game();

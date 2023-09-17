@@ -1,0 +1,24 @@
+* {
+    border: 1px solid red;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 {
+    padding: 0px;
+    margin: 0px;
+}
+
+#choice-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 48px 24px;
+    margin: 48px;
+    gap: 32px;
+}

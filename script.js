@@ -21,9 +21,6 @@ function getComputerChoice() {
 };
 
 function playRound(playerSelection, computerSelection) {
-    // format player's selection
-    playerSelection = playerSelection.toLowerCase();
-
     // based on the players selection we have 3 paths
     if (playerSelection === "rock")
     {
@@ -82,15 +79,73 @@ function playRound(playerSelection, computerSelection) {
     }
 };
 
-function game() {
-    // create a loop that plays 5 rounds
-    for (let index = 0; index < 5; index++) {
-        // have user select an option
-        let playerSelection = prompt("Rock Paper or Scissors?");
-        let computerSelection = getComputerChoice();
+function gameOver() {
+    const result = document.getElementById("message");
+    const userScore = document.getElementById("user-score");
+    const comScore = document.getElementById("com-score");
 
-        console.log("Round " + (index + 1) + ": " + playRound(playerSelection, computerSelection));
+    // let user know the result of the game
+    if (uScore > cScore) {
+        // congrats you won!
+        alert("Congrats! You won. At least for now...");
+    } else {
+        alert("Unfortunately, You lost. Maybe next time...");
     }
+
+    // reset scores
+    uScore = 0;
+    cScore = 0;
+
+    // reset DOM
+    result.innerText = "Click a button to play a round!";
+    userScore.innerText = `Your Score: ${uScore}`;
+    comScore.innerText = `Computer's Score: ${cScore}`;
 };
 
-game();
+// gather DOM elements needed
+const choices = Array.from(document.getElementsByClassName("choice"));
+const result = document.getElementById("message");
+const userScore = document.getElementById("user-score");
+const comScore = document.getElementById("com-score");
+
+// set scores
+let uScore, cScore;
+uScore = 0;
+cScore = 0;
+
+// play round for each choice selected
+choices.forEach(choice => {
+    choice.addEventListener("click", () => {
+        let selection = choice.id;
+        let message = playRound(selection, getComputerChoice())
+
+        // display the message
+        result.innerText = "Round Results: " + message;
+
+        if (message.includes("Win"))
+        {
+            // update user's score
+            uScore += 1;
+            userScore.innerText = `Your Score: ${uScore}`;
+        }
+        else if (message.includes("Lose"))
+        {
+            // update com's score
+            cScore += 1;
+            comScore.innerText = `Computer's Score: ${cScore}`;
+        }
+
+        // if anyone reaches a score of 5 the game is done
+        if (uScore === 5 || cScore === 5) {
+            if (uScore === 5) {
+                userScore.innerText = `Your Score: 5`;
+            } else if (cScore === 5) {
+                comScore.innerText = `Computer's Score: 5`;
+            }
+            
+            setTimeout(() => {
+                gameOver(uScore, cScore);
+            }, 50);
+        }
+    });
+} );

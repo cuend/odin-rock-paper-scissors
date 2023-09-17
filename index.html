@@ -3,11 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Rock Paper Scissors</title>
 </head>
 <body>
-    
+    <h1>A Classic Game of Rock Paper Scissors</h1>
+    <h2>Where Strategy Meets Luck. First to 5 wins.</h2>
+    <!-- container for buttons -->
+    <div id="choice-container">
+        <button id="rock" class="choice">Rock</button>
+        <button id="paper" class="choice">Paper</button>
+        <button id="scissors" class="choice">Scissors</button>
+    </div>
 
+    <!-- container to display message and scores -->
+    <div id="results">
+        <div id="message">Click a button to play a round!</div>
+        <div id="user-score">Your Score: 0</div>
+        <div id="com-score">Computer's Score: 0</div>
+    </div>
 
     <!-- Linking JS file here -->
     <script src="script.js"></script>
